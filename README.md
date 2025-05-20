@@ -5,7 +5,7 @@ A simple and elegant Arabic-language web interface for managing daily tasks, bui
 This app allows users to add tasks, mark them as completed, and delete them once finished. It features a visually appealing UI with full right-to-left (RTL) support for Arabic users.
 
 📸 Screenshot
-![App Screenshot](Screenshots/Screenshot%20(54).png)
+![Screenshot](Screenshot%20(54).png)
 
 🚀 Features
 Fully in Arabic with RTL layout support.
