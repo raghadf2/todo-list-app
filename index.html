@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>قائمة المهام</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      direction: rtl;
+    }
+
+    .todo-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #5c5c5c;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #d8b4e2;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background-color: #fef3f9;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #d36ac2;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b24cad;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #fceefc;
+      padding: 10px;
+      border: 1px solid #e0c7f0;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #333;
+    }
+
+    li.completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .actions button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .actions button.complete {
+      color: #6bcf7c;
+    }
+
+    .actions button.delete {
+      color: #f06292;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h2>📝 قائمة المهام</h2>
+    <input type="text" id="taskInput" placeholder="أدخل مهمة جديدة">
+    <button onclick="addTask()">➕ إضافة</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+
+    function addTask() {
+      const taskText = taskInput.value.trim();
+      if (taskText === '') return;
+
+      const li = document.createElement('li');
+      li.textContent = taskText;
+
+      const actions = document.createElement('div');
+      actions.className = 'actions';
+
+      const completeBtn = document.createElement('button');
+      completeBtn.innerHTML = '✔';
+      completeBtn.classList.add('complete');
+      completeBtn.onclick = () => {
+        li.classList.toggle('completed');
+      };
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.innerHTML = '🗑';
+      deleteBtn.classList.add('delete');
+      deleteBtn.onclick = () => {
+        taskList.removeChild(li);
+      };
+
+      actions.appendChild(completeBtn);
+      actions.appendChild(deleteBtn);
+      li.appendChild(actions);
+      taskList.appendChild(li);
+
+      taskInput.value = '';
+    }
+  </script>
+</body>
+</html>
